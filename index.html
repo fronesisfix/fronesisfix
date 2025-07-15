@@ -118,7 +118,7 @@
             <div class="relative z-0 p-4 max-w-4xl mx-auto">
                 <h1 class="text-5xl md:text-7xl font-bold mb-4 orange-gradient-text leading-tight">PHRONESIS ELECTRIC</h1>
                 <p class="text-xl md:text-2xl text-white mb-8">We apply expert knowledge and skill to give your devices a second life. Because repairs don't have to be painful and embarrassing.</p>
-                <a href="#contact" class="btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg inline-block text-lg">Get a Quote</a>
+                <a href="https://wa.me/254719560700?text=Hello, I'm interested in your repair service." target="_blank" class="btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg inline-block text-lg">Get a Quote on WhatsApp</a>
             </div>
         </section>
 
@@ -300,31 +300,31 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 orange-gradient-text">Get in Touch</h2>
                 <div class="max-w-2xl mx-auto bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700">
                     <p class="text-gray-300 text-lg text-center mb-8">Ready to give your device a second life? Contact us today!</p>
-                    <form class="space-y-6">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); sendWhatsAppMessage();">
                         <div>
                             <label for="name" class="block text-gray-200 text-sm font-bold mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Your Name">
+                            <input type="text" id="name" name="name" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Your Name" required>
                         </div>
                         <div>
                             <label for="email" class="block text-gray-200 text-sm font-bold mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="your.email@example.com">
+                            <input type="email" id="email" name="email" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="your.email@example.com" required>
                         </div>
                         <div>
                             <label for="device" class="block text-gray-200 text-sm font-bold mb-2">Device Type</label>
-                            <input type="text" id="device" name="device" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="e.g., iPhone 13, MacBook Pro">
+                            <input type="text" id="device" name="device" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="e.g., iPhone 13, MacBook Pro" required>
                         </div>
                         <div>
                             <label for="issue" class="block text-gray-200 text-sm font-bold mb-2">Describe Your Issue</label>
-                            <textarea id="issue" name="issue" rows="5" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Tell us what's wrong with your device..."></textarea>
+                            <textarea id="issue" name="issue" rows="5" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Tell us what's wrong with your device..." required></textarea>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn-primary text-white font-semibold py-3 px-10 rounded-full shadow-lg text-lg">Send Message</button>
+                            <button type="submit" class="btn-primary text-white font-semibold py-3 px-10 rounded-full shadow-lg text-lg">Send Message on WhatsApp</button>
                         </div>
                     </form>
                     <div class="mt-8 text-center text-gray-400">
-                        <p>Prefer to call? <span class="text-orange-500">+254 7XX XXX XXX</span></p>
-                        <p>Email us: <span class="text-orange-500">info@phronesiselectric.com</span></p>
-                        <p>Visit us at: <span class="text-orange-500">123 Tech Lane, Nairobi, Kenya</span></p>
+                        <p>Prefer to call? <span class="text-orange-500">0719560700 or 0115616282</span></p>
+                        <p>Email us: <span class="text-orange-500">phronesiselec@gmail.com</span></p>
+                        <p>Visit us at: <span class="text-orange-500">Main Market, Kakamega Webuye Highway Kakamega</span></p>
                     </div>
                 </div>
             </div>
@@ -369,6 +369,38 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+
+        // Function to send form content via WhatsApp
+        function sendWhatsAppMessage() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const device = document.getElementById('device').value;
+            const issue = document.getElementById('issue').value;
+
+            // Basic validation
+            if (!name || !email || !device || !issue) {
+                alert('Please fill in all fields before sending your message.');
+                return;
+            }
+
+            const phoneNumber = '254719560700'; // Your WhatsApp number
+            const message = `Hello Phronesis Electric,
+
+I'd like to inquire about a repair service. Here are my details:
+
+Name: ${name}
+Email: ${email}
+Device Type: ${device}
+Issue Description:
+${issue}
+
+Please get back to me at your earliest convenience. Thank you!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank'); // Open in a new tab
+        }
     </script>
 </body>
 </html>
