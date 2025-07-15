@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phronesis Electric - Device Repair Experts</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000; /* Solid black background fallback */
+            color: #fff; /* White text for contrast */
+            /* New YouTube-like background */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 60 40"><rect x="0" y="0" width="60" height="40" rx="5" fill="%231a1a1a" opacity="0.8"/><polygon points="25,15 40,25 25,35" fill="%23ff8c00"/><rect x="0" y="0" width="60" height="40" rx="5" stroke="%23333333" stroke-width="1"/></svg>'),
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 60 40"><rect x="0" y="0" width="60" height="40" rx="5" fill="%231a1a1a" opacity="0.8"/><polygon points="25,15 40,25 25,35" fill="%23ff8c00"/><rect x="0" y="0" width="60" height="40" rx="5" stroke="%23333333" stroke-width="1"/></svg>');
+            background-size: 60px 40px, 60px 40px; /* Size of each icon */
+            background-repeat: repeat;
+            background-position: 0 0, 30px 20px; /* Offset to create a staggered pattern */
+            /* Ensure a dark overlay for text readability */
+            position: relative;
+            z-index: 0;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+            z-index: -1;
+        }
+
+        .orange-gradient-text {
+            background: linear-gradient(to right, #ff8c00, #ff4500); /* Orange gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #ff8c00, #ff4500); /* Orange gradient button */
+            transition: transform 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+        }
+        /* Custom scrollbar for a techy feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff8c00;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="bg-black bg-opacity-80 shadow-lg py-4 px-6 md:px-12 fixed w-full z-10">
+        <nav class="container mx-auto flex justify-between items-center">
+            <!-- Logo - Using the newly provided logo image -->
+            <div class="flex items-center space-x-2">
+                <img src="uploaded:Gemini_Generated_Image_s3cdovs3cdovs3cd (1).png-04a8d2d1-8d4c-4863-940f-44c4a32efd62" alt="Phronesis Electric Logo" class="h-10 w-auto">
+            </div>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-orange-500 transition duration-300">Home</a>
+                <a href="#why-us" class="text-white hover:text-orange-500 transition duration-300">Why Choose Us?</a>
+                <a href="#services" class="text-white hover:text-orange-500 transition duration-300">Services</a>
+                <a href="#about" class="text-white hover:text-orange-500 transition duration-300">About Us</a>
+                <a href="#team" class="text-white hover:text-orange-500 transition duration-300">Our Team</a>
+                <a href="#terms" class="text-white hover:text-orange-500 transition duration-300">Terms & Conditions</a>
+                <a href="#contact" class="text-white hover:text-orange-500 transition duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-black bg-opacity-95 z-20 hidden">
+            <div class="flex justify-end p-4">
+                <button id="close-mobile-menu" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex flex-col items-center space-y-6 text-xl">
+                <a href="#home" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+                <a href="#why-us" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Why Choose Us?</a>
+                <a href="#services" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+                <a href="#about" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
+                <a href="#team" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Our Team</a>
+                <a href="#terms" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Terms & Conditions</a>
+                <a href="#contact" class="text-white hover:text-orange-500 transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <!-- Background Image (using the banner image) -->
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('http://googleusercontent.com/image_generation_content/8'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black opacity-70"></div> <!-- Overlay for text readability -->
+            </div>
+            <div class="relative z-0 p-4 max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 orange-gradient-text leading-tight">PHRONESIS ELECTRIC</h1>
+                <p class="text-xl md:text-2xl text-white mb-8">We apply expert knowledge and skill to give your devices a second life. Because repairs don't have to be painful and embarrassing.</p>
+                <a href="#contact" class="btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg inline-block text-lg">Get a Quote</a>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section - New Section for more imagery -->
+        <section id="why-us" class="py-20 px-6 md:px-12 bg-black">
+            <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="http://googleusercontent.com/image_generation_content/2" alt="African Technician at Work" class="rounded-xl shadow-2xl border border-gray-800 w-full h-auto object-cover">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 orange-gradient-text">Why Choose Phronesis Electric?</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        At Phronesis Electric, we combine deep technical knowledge with a genuine commitment to customer satisfaction. Our skilled technicians are passionate about bringing your devices back to life, ensuring every repair is performed with precision and care.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        We believe in transparent service, fair pricing, and reliable results. When you trust us with your device, you're choosing a team that values your technology and strives to make the repair process as smooth and stress-free as possible.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 px-6 md:px-12 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 orange-gradient-text">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Service Card 1: Mobile Phone Repair -->
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700 hover:border-orange-500 transition duration-300">
+                        <div class="text-orange-500 text-5xl mb-4 text-center">
+                            📱 <!-- Emoji icon for mobile phone -->
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-center">Mobile Phone Repair</h3>
+                        <p class="text-gray-300 text-center">Cracked screens, battery replacements, charging port issues, water damage, and more for all major brands.</p>
+                    </div>
+                    <!-- Service Card 2: Laptop & Tablet Repair -->
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700 hover:border-orange-500 transition duration-300">
+                        <div class="text-orange-500 text-5xl mb-4 text-center">
+                            💻 <!-- Emoji icon for laptop -->
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-center">Laptop & Tablet Repair</h3>
+                        <p class="text-gray-300 text-center">Hardware upgrades, software troubleshooting, virus removal, keyboard replacement, and power issues.</p>
+                    </div>
+                    <!-- Service Card 3: Data Recovery -->
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700 hover:border-orange-500 transition duration-300">
+                        <div class="text-orange-500 text-5xl mb-4 text-center">
+                            💾 <!-- Emoji icon for data recovery -->
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-center">Data Recovery</h3>
+                        <p class="text-gray-300 text-center">Accidentally deleted files? Hard drive failure? We can help recover your precious data.</p>
+                    </div>
+                    <!-- Service Card 4: Console Repair -->
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700 hover:border-orange-500 transition duration-300">
+                        <div class="text-orange-500 text-5xl mb-4 text-center">
+                            🎮 <!-- Emoji icon for console -->
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-center">Console Repair</h3>
+                        <p class="text-gray-300 text-center">Fixing common issues with gaming consoles, including disc drive problems, power issues, and overheating.</p>
+                    </div>
+                    <!-- Service Card 5: Component Level Repair -->
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700 hover:border-orange-500 transition duration-300">
+                        <div class="text-orange-500 text-5xl mb-4 text-center">
+                            🔬 <!-- Emoji icon for microscope/components -->
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-center">Component Level Repair</h3>
+                        <p class="text-gray-300 text-center">Advanced diagnostics and repair of individual components on circuit boards for complex issues.</p>
+                    </div>
+                    <!-- Service Card 6: Diagnostics & Consultation -->
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700 hover:border-orange-500 transition duration-300">
+                        <div class="text-orange-500 text-5xl mb-4 text-center">
+                            💡 <!-- Emoji icon for lightbulb/idea -->
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-center">Diagnostics & Consultation</h3>
+                        <p class="text-gray-300 text-center">Thorough diagnostics to pinpoint the problem and expert advice on the best repair solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 px-6 md:px-12 bg-black">
+            <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="http://googleusercontent.com/image_generation_content/6" alt="Phronesis Electric Team" class="rounded-xl shadow-2xl border border-gray-800 w-full h-auto object-cover">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 orange-gradient-text">About Phronesis Electric</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        At Phronesis Electric, we believe in the power of expertise and the value of sustainability. Our name, "Phronesis," reflects our commitment to practical wisdom and skill, which we apply to every repair. We are a team of dedicated and highly skilled technicians passionate about giving your beloved devices a second life.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        We understand that device repairs can often be a source of frustration. That's why we strive to make the process as seamless, transparent, and pain-free as possible. From diagnosis to repair, we ensure clear communication and exceptional service, so you can get back to using your devices without embarrassment or hassle.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Expert Team Section -->
+        <section id="team" class="py-20 px-6 md:px-12 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 orange-gradient-text">Meet Our Expert Team</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <div class="md:w-1/2 lg:w-1/3">
+                        <img src="http://googleusercontent.com/image_generation_content/5" alt="Phronesis Electric Technicians" class="rounded-xl shadow-2xl border border-gray-800 w-full h-auto object-cover">
+                    </div>
+                    <div class="md:w-1/2 lg:w-2/3 text-center md:text-left">
+                        <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                            Our strength lies in our diverse and highly skilled team of African technicians. Each member brings unique expertise and a shared passion for precision and customer satisfaction. We are committed to continuous learning and applying the latest repair techniques to ensure your devices are in the best hands.
+                        </p>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            When you choose Phronesis Electric, you're choosing a team that cares about your devices and your peace of mind. We're here to provide reliable, efficient, and friendly service every step of the way.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms & Conditions Section -->
+        <section id="terms" class="py-20 px-6 md:px-12 bg-black">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 orange-gradient-text">Terms & Conditions</h2>
+                <div class="max-w-3xl mx-auto text-gray-300 space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Service Policies & Repair Risks</h3>
+                        <p class="mb-2">Electronic repairs are inherently unpredictable. Your device may be beyond repair or suffer permanent damage during the repair process, potentially rendering it unusable. This risk is higher for devices with liquid damage or those with glued-on screens (e.g., iPads), where components can fail or screens may crack during disassembly. Features like Touch ID/Face ID on Apple devices or integrated GPUs on older laptops may also fail during repair, though this is uncommon.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Estimates</h3>
+                        <p class="mb-2">Our estimates are thorough but not guaranteed to be all-inclusive or final, as some issues may only become apparent during the repair. If an estimate needs to be updated, we will inform you immediately, and all changes must be approved by you before we proceed. It is the customer's responsibility to seek an estimate; by submitting a device, you acknowledge you have performed due diligence regarding pricing.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="2xl font-semibold mb-3 text-orange-400">Payment Options</h3>
+                        <p class="mb-2">We accept payments via **Cash, M-Pesa Paybill, or M-Pesa Till**. All payments must be receipted. Customers seeking refunds or warranty claims must present the original receipt. In case of a lost receipt, we reserve the right to deny the customer the device until ownership can be proven otherwise.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Limited Shop Warranty</h3>
+                        <p class="mb-2">We offer a 60-day warranty on all repairs and parts used, covering recurrence of the original issue. This warranty does not cover new issues unrelated to the original service or problems arising from user error, negligence, or physical tampering (e.g., drops, liquid damage, unauthorized modification, use of non-original charging cables). Installing new hardware or modifying existing hardware in the 60 day guarantee period also voids our warranty. Please note that our services may void your manufacturer's warranty, for which we are not liable.</p>
+                        <p class="mb-2">If your device malfunctions due to the original repair within 60 days, we will re-perform the service at no extra cost. Refunds are only issued if we cannot fix the device after a re-attempt, minus a repair attempt fee and return shipping. You are responsible for shipping the device back for warranty repairs, and we will cover return shipping.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Estimate and Repair Time</h3>
+                        <p class="mb-2">While we strive for quick repairs (often 1-48 hours), repair times are estimates and not guaranteed due to factors beyond our control. Any stated times are based on past experience and do not represent exact timeframes or guarantees.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Replacement Parts Procedure</h3>
+                        <p class="mb-2">If parts are needed, we will inform you of the cost and estimated arrival time. A non-refundable deposit of 50% of the part cost is required if you wish to hold your device until parts arrive. We generally do not use customer-supplied parts as we cannot verify their functionality or compatibility; using your own parts voids our warranty and you waive liability for any damage caused by such parts.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Repair Attempt Fee</h3>
+                        <p class="mb-2">A repair attempt fee ranging from approximately KES 100 - KES 1,000 will be charged for most motherboard repairs, data recovery attempts, or devices with prior repair attempts, even if unsuccessful. This fee covers the time spent on your device.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Shipping Policy</h3>
+                        <p class="mb-2">We follow your provided shipping instructions. Failure to request insurance means you are solely responsible for shipping damages, and we assume no liability. Devices shipped in generic boxes will be returned in generic boxes at your own risk. Order amounts must be equal to or greater than the shipping amount; otherwise, the order may be canceled.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Data Security & Recovery</h3>
+                        <p class="mb-2">We do not guarantee the security or safety of your data. While we take precautions, we are not liable for any lost data. If a procedure may result in data loss, we will inform you and offer data backup at an additional cost. We strongly encourage you to back up all important files before service. Data recovery for SSDs/HDDs costs approximately KES 2,000 – KES 10,000, and recovered data will be placed on a new drive provided by us. Old drives are dismantled for recovery and will not be returned.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-orange-400">Pickup Time Limit and Storage</h3>
+                        <p class="mb-2">Devices will be held for up to 60 days after we contact you for pickup. After 60 days, devices are considered abandoned, and we reserve the right to sell or recycle them to recover service costs. If arrangements are made for pickup after 60 days, a storage fee of approximately KES 5,200 per month will apply.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6 md:px-12 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 orange-gradient-text">Get in Touch</h2>
+                <div class="max-w-2xl mx-auto bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-700">
+                    <p class="text-gray-300 text-lg text-center mb-8">Ready to give your device a second life? Contact us today!</p>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-200 text-sm font-bold mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-200 text-sm font-bold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="your.email@example.com">
+                        </div>
+                        <div>
+                            <label for="device" class="block text-gray-200 text-sm font-bold mb-2">Device Type</label>
+                            <input type="text" id="device" name="device" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="e.g., iPhone 13, MacBook Pro">
+                        </div>
+                        <div>
+                            <label for="issue" class="block text-gray-200 text-sm font-bold mb-2">Describe Your Issue</label>
+                            <textarea id="issue" name="issue" rows="5" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 bg-gray-700 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Tell us what's wrong with your device..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary text-white font-semibold py-3 px-10 rounded-full shadow-lg text-lg">Send Message</button>
+                        </div>
+                    </form>
+                    <div class="mt-8 text-center text-gray-400">
+                        <p>Prefer to call? <span class="text-orange-500">+254 7XX XXX XXX</span></p>
+                        <p>Email us: <span class="text-orange-500">info@phronesiselectric.com</span></p>
+                        <p>Visit us at: <span class="text-orange-500">123 Tech Lane, Nairobi, Kenya</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-black py-8 px-6 md:px-12 text-center text-gray-400">
+        <div class="container mx-auto">
+            <p>&copy; 2023 Phronesis Electric. All rights reserved.</p>
+            <p class="mt-2">Crafted with <span class="text-orange-500">&hearts;</span> for your devices.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
